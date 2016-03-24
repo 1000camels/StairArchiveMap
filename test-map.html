@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Stair Archive - Test Map (using WMS from local Geoserver)</title>
+    <link rel="stylesheet" href="http://openlayers.org/en/v3.14.2/css/ol.css" type="text/css">
+    <script src="http://openlayers.org/en/v3.14.2/build/ol.js"></script>
+  </head>
+  <body>
+    <div id="map" class="map"></div>
+    <script>
+      var layers = [
+        new ol.layer.Tile({
+          source: new ol.source.MapQuest({layer: 'osm'})  // osm,sat,hyb
+        }),
+        new ol.layer.Tile({
+          extent: [ 12704863,2544744, 12707970,2546343 ],
+          visible: true,
+          source: new ol.source.TileWMS({
+            url: 'http://stairculture.com:8080/geoserver/StairArchive/wms',
+            params: {
+                'LAYERS': 'StairArchive:Stair_Archive', 
+                'TILED': true
+            },
+            transparent : true,
+            serverType: 'geoserver'
+          })
+        })
+      ];
+      var map = new ol.Map({
+        layers: layers,
+        target: 'map',
+        view: new ol.View({
+          center: [ 12706746, 2545643 ],
+          zoom: 17
+        })
+      });
+    </script>
+    <h2>Stair Archive</h2>
+    <p>This is a working model to be used in the Stair Archive project.</p>
+
+  </body>
+</html>
