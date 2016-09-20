@@ -10,7 +10,14 @@
     <script>
       var layers = [
         new ol.layer.Tile({
-          source: new ol.source.OSM()
+          source: new ol.source.OSM({
+            "url" : "http://{a-c}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png"
+          })
+        }),
+        new ol.layer.Tile({
+          source: new ol.source.OSM({
+            "url" : "http://tile2.opencyclemap.org/transport/{z}/{x}/{y}.png"
+          })
         }),
         new ol.layer.Tile({
           extent: [ 12704863,2544744, 12707970,2546343 ],
